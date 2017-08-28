@@ -27,7 +27,17 @@ var tipsList = [
 
 
 // Generate a number
+function generateNumber() {
+	return	Math.round ( Math.random() * tipsList.length )
+	// Math.random returns a number between 0 and 1
+	// tipsList.length will be the number of items in the array
+	// => Their resulting product will be a number between 0 and 11
+	// Math.round helps us get a whole number so we can use it later as an array index
+}
 
+console.log(
+	"Random number is " + generateNumber()
+)
 
 // Generate a tip:
 // 1. Get random number from generateNumber()
