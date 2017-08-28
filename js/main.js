@@ -52,6 +52,14 @@ console.log(
 	"⚡️ Random tip is: \n\n" + generateTip()
 )
 
+function renderTip() {
+	var tip = generateTip()
+	var targetEl = document.querySelector(".js-tip")
+	targetEl.innerHTML = tip
+}
+
+renderTip()
+
 
 // Tip button click
 // 1. Select the tip button
