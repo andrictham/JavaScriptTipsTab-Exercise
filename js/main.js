@@ -28,21 +28,29 @@ var tipsList = [
 
 // Generate a number
 function generateNumber() {
-	return	Math.round ( Math.random() * tipsList.length )
+	return	Math.floor ( Math.random() * tipsList.length )
 	// Math.random returns a number between 0 and 1
 	// tipsList.length will be the number of items in the array
 	// => Their resulting product will be a number between 0 and 11
-	// Math.round helps us get a whole number so we can use it later as an array index
+	// Math.floor helps us get a whole number (less than or equal to!), so we can use it later as an array index
 }
 
 console.log(
-	"Random number is " + generateNumber()
+	"✨ Random number is: \n" + generateNumber()
 )
 
 // Generate a tip:
 // 1. Get random number from generateNumber()
 // 2. Use the random number to get the tip from the array
 // 3. Show the tip
+function generateTip() {
+	var tip = tipsList[ generateNumber() ]
+	return tip
+}
+
+console.log(
+	"⚡️ Random tip is: \n\n" + generateTip()
+)
 
 
 // Tip button click
