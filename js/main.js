@@ -77,7 +77,14 @@ renderTipLimitCounter()
 function onTipButtonClick() {
 	var tipButton = document.querySelector(".tip-button")
 	tipButton.addEventListener("click", function(){
-		alert('clicked!')
+		tipLimit--
+		if(tipLimit >= 0) {
+			renderTip()
+		} else {
+			this.innerHTML = "See you in another tab!"
+			this.classList.add("disabled")
+		}
+		renderTipLimitCounter()
 	})
 }
 
