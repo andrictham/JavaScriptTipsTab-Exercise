@@ -24,7 +24,7 @@ var tipsList = [
 ];
 
 // Tip Limit counter
-
+var tipLimit = 3
 
 // Generate a number
 function generateNumber() {
@@ -58,7 +58,13 @@ function renderTip() {
 	targetEl.innerHTML = tip
 }
 
+function renderTipLimitCounter() {
+	var targetEl = document.querySelector(".tip-limit-count")
+	targetEl.innerHTML = tipLimit
+}
+
 renderTip()
+renderTipLimitCounter()
 
 
 // Tip button click
