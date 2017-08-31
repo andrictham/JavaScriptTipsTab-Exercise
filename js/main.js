@@ -64,13 +64,19 @@ function renderTip() {
 	)
 }
 
-function renderTipLimitCounter() {
+function renderTipLimitCounter(enabled) {
 	var targetEl = document.querySelector(".tip-limit-count")
-	targetEl.innerHTML = tipLimit
+	console.log(isTipLimitSingular)
+	if (enabled === true) {
+		targetEl.innerHTML = tipLimit + " more tips"
+	}
+	if (enabled === false) {
+		targetEl.innerHTML = ""
+	}
 }
 
 renderTip()
-renderTipLimitCounter()
+renderTipLimitCounter(true)
 
 
 // Tip button click
@@ -87,11 +93,12 @@ function onTipButtonClick() {
 		// If there are still tips to show
 		if (tipLimit >= 0) {
 			renderTip()
-			renderTipLimitCounter()
+			renderTipLimitCounter(true)
 			// If this is the last tip (no more to show)
 			if (tipLimit === 0) {
 				this.innerHTML = "See you in another tab!"
 				this.classList.add("disabled")
+				renderTipLimitCounter(false)
 			}
 		}
 	})
