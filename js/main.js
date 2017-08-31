@@ -79,7 +79,10 @@ function renderTipLimitCounter() {
 
 }
 
+// Render the first tip
 renderTip()
+
+// Render the tip limit counter on first load
 renderTipLimitCounter()
 
 
@@ -108,6 +111,3 @@ function onTipButtonClick() {
 }
 
 onTipButtonClick()
-
-
-// Get the first tip
