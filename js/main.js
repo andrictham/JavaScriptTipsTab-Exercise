@@ -64,19 +64,23 @@ function renderTip() {
 	)
 }
 
-function renderTipLimitCounter(enabled) {
+function renderTipLimitCounter() {
 	var targetEl = document.querySelector(".tip-limit-count")
-	console.log(isTipLimitSingular)
-	if (enabled === true) {
-		targetEl.innerHTML = tipLimit + " more tips"
-	}
-	if (enabled === false) {
+
+	tipLimitIsSingular = tipLimit===1 ? true : false
+	tipLimitIsZeroOrNegative = tipLimit===0 || tipLimit<0 ? true : false
+
+	var tipMicroCopy = tipLimitIsSingular ? " more tip" : " more tips"
+	targetEl.innerHTML = tipLimit + tipMicroCopy
+
+	if (tipLimitIsZeroOrNegative) {
 		targetEl.innerHTML = ""
 	}
+
 }
 
 renderTip()
-renderTipLimitCounter(true)
+renderTipLimitCounter()
 
 
 // Tip button click
@@ -90,15 +94,14 @@ function onTipButtonClick() {
 	var tipButton = document.querySelector(".tip-button")
 	tipButton.addEventListener("click", function(){
 		tipLimit--
+		renderTipLimitCounter()
 		// If there are still tips to show
 		if (tipLimit >= 0) {
 			renderTip()
-			renderTipLimitCounter(true)
 			// If this is the last tip (no more to show)
 			if (tipLimit === 0) {
 				this.innerHTML = "See you in another tab!"
 				this.classList.add("disabled")
-				renderTipLimitCounter(false)
 			}
 		}
 	})
