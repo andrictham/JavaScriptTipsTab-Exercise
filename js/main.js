@@ -78,13 +78,16 @@ function onTipButtonClick() {
 	var tipButton = document.querySelector(".tip-button")
 	tipButton.addEventListener("click", function(){
 		tipLimit--
+		// If there are still tips to show
 		if(tipLimit >= 0) {
 			renderTip()
-		} else {
-			this.innerHTML = "See you in another tab!"
-			this.classList.add("disabled")
+			renderTipLimitCounter()
+			// If this is the last tip (no more to show)
+			if(tipLimit === 0) {
+				this.innerHTML = "See you in another tab!"
+				this.classList.add("disabled")
+			}
 		}
-		renderTipLimitCounter()
 	})
 }
 
