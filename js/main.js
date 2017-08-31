@@ -25,37 +25,43 @@ var tipsList = [
 
 // Tip Limit counter
 var tipLimit = 3
+var generatedNumber = null
 
 // Generate a number
 function generateNumber() {
-	return	Math.floor ( Math.random() * tipsList.length )
+	var newGeneratedNumber = Math.floor ( Math.random() * tipsList.length )
+
+	if (generatedNumber === newGeneratedNumber) { // Recursive case
+		generateNumber()
+	} else { // Base case
+		generatedNumber = newGeneratedNumber
+		console.log(
+			"✨ Random number is: \n" + generatedNumber
+		)
+	}
 	// Math.random returns a number between 0 and 1
 	// tipsList.length will be the number of items in the array
 	// => Their resulting product will be a number between 0 and 11
 	// Math.floor helps us get a whole number (less than or equal to!), so we can use it later as an array index
 }
 
-console.log(
-	"✨ Random number is: \n" + generateNumber()
-)
-
 // Generate a tip:
 // 1. Get random number from generateNumber()
 // 2. Use the random number to get the tip from the array
 // 3. Show the tip
 function generateTip() {
-	var tip = tipsList[ generateNumber() ]
+	generateNumber()
+	var tip = tipsList[ generatedNumber ]
 	return tip
 }
-
-console.log(
-	"⚡️ Random tip is: \n\n" + generateTip()
-)
 
 function renderTip() {
 	var tip = generateTip()
 	var targetEl = document.querySelector(".js-tip")
 	targetEl.innerHTML = tip
+	console.log(
+		"⚡️ Random tip is: \n\n" + tip
+	)
 }
 
 function renderTipLimitCounter() {
@@ -79,11 +85,11 @@ function onTipButtonClick() {
 	tipButton.addEventListener("click", function(){
 		tipLimit--
 		// If there are still tips to show
-		if(tipLimit >= 0) {
+		if (tipLimit >= 0) {
 			renderTip()
 			renderTipLimitCounter()
 			// If this is the last tip (no more to show)
-			if(tipLimit === 0) {
+			if (tipLimit === 0) {
 				this.innerHTML = "See you in another tab!"
 				this.classList.add("disabled")
 			}
